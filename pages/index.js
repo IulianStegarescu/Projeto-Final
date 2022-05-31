@@ -1,25 +1,31 @@
 import Link from "next/link"
 import { Fragment, useState } from "react"
-export default function Home() {
-  const [nomeInput, setNomeInput] = useState("")
+import MainNavigation from "../componentes/logo"
+export default function Home({sala,setSala}) {
   return (
     <Fragment >
-      <div>
-        <h1>Cards Aganist Humanity</h1>
-        <h3>Insira um Nome:</h3>
-        <input value={nomeInput} type="text" onChange={(evento) => setNomeInput(evento.target.value)} />
-        <Link href="/criarsala">
-          <button>Criar Sala</button>
-        </Link>
-        <Link href="/procurarsala">
-          <button>Procurar Sala</button>
-        </Link>
-        <Link href="/regras">
-          <button>Regras</button>
-        </Link>
-        <Link href="/baralhos">
-          <button>Baralhos</button>
-        </Link>
+<MainNavigation/>
+      <div className="">
+        <div className="nomeDoJogador">
+          <h3>Insira o Nome:</h3>
+        </div>
+        <div className="input">
+          <input value={sala.NomeDoJogador} type="text" onChange={(evento) => setSala(prev=>({...prev,NomeDoJogador:evento.target.value}))} />
+        </div><br/>
+        <div className="organizarButoes">
+          <Link href="/criarsala">
+            <button className="butoes" disabled={sala.NomeDoJogador == ""}>Criar Sala</button>
+          </Link>
+          <Link href="/procurarsala">
+            <button className="butoes" disabled={sala.NomeDoJogador == ""}>Procurar Sala</button>
+          </Link>
+          <Link href="/regras">
+            <button className="butoes" >Regras</button>
+          </Link>
+          <Link href="/baralhos">
+            <button className="butoes" >Baralhos</button>
+          </Link>
+        </div>
       </div>
     </Fragment>
 
